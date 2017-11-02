@@ -1,0 +1,16 @@
+{
+  "name": "kevin",
+  "version": "1.0.9",
+  "description": "",
+  "main": "algorithm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.12.0",
+    "mysqldump": "^1.4.2",
+    "promise": "^7.1.1"
+  }
+}
