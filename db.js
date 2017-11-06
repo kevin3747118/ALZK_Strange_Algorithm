@@ -1,42 +1,33 @@
 const mysql = require('mysql');
+const Promise = require('promise');
+
 
 class db {
-    constructor(sqlText) {
-        this.host = '127.0.0.1';
-        this.user = 'alzk';
-        this.password = 'alzk';
-        this.sqlText = sqlText
-        this.conn = mysql.createConnection({
-            host: this.host,
-            user: this.user,
-            password: this.password
-        }).query("select * from alzk.staffs", function(eee, aaa){
-            if (eee) {
-                console.log(eee)
-            } else {
-                console.log(aaa)
-            }
+    static conn() {
+        const conn = mysql.createConnection({
+            host: '127.0.0.1',
+            user: 'alzk',
+            password: 'alzk',
         })
-        // .connect(function(err) {
-        //     if (!err) {
-        //         console.log("ok")
-        //     } else {
-        //         console.log(err)
-        //     }
-        // })
-        // .query('select * from alzk.staffs', function(err, results) {
-        //     console.log(results)
-        // })
-//     }
+        return conn
+    }
 
-//     test() {
-//         return this.conn
-//     }
-// }
+    static execSQL(sqlText) {
+        const conn = this.conn()
+        return new Promise((resolve, reject) => {
+            conn.query(sqlText, function(err, results) {
+                if (err) reject(err);
+                resolve(results)
+                conn.end()
+            }) 
+        })
+    }
+}
 
-// let a = new db()
-// a.test
-
+db.execSQL(`select * from alzk.staffs`)
+.then((results) => {
+    console.log(results)
+})
 
 
 // function test(cb) {
