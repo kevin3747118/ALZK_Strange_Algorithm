@@ -50,7 +50,7 @@ sTable = function (value) {
             for (var i = 0; i < alphabetic.length; i++) {
                 arr2db.push([d[0] ,alphabetic[i]])
             }
-            if (arr2db.length === 0) reject('err!')
+            if (arr2db.length === 0) reject('err!!')
             resolve(arr2db)
         }) 
     })
