@@ -1,8 +1,8 @@
 const mysql = require('mysql');
 const Promise = require('promise');
 
+class DB {
 
-class db {
     static conn() {
         const conn = mysql.createConnection({
             host: '127.0.0.1',
@@ -12,34 +12,27 @@ class db {
         return conn
     }
 
-    static execSQL(sqlText) {
+    static execSQL(sqlText, values) {
         const conn = this.conn()
         return new Promise((resolve, reject) => {
-            conn.query(sqlText, function(err, results) {
+            conn.query(sqlText, [values], function(err, results) {
                 if (err) reject(err);
                 resolve(results)
                 conn.end()
             }) 
         })
     }
+
+    static test() {
+        console.log('@_@')
+    }
 }
 
-db.execSQL(`select * from alzk.staffs`)
-.then((results) => {
-    console.log(results)
-})
+module.exports = DB
+// module.exports.DB = DB;
 
 
-// function test(cb) {
-//     var greeting = "hello~"
-//     // setTimeout(function() {
-//     //     console.log(greeting)
-//     // }, 3000)
-//     cb(greeting, 123)
-// }
-
-// test(function(a, b) {
-//     // console.log("my name is kevin")
-//     console.log(a)
-//     console.log(b)
+// DB.execSQL(`select * from alzk.staffs`)
+// .then((results) => {
+//     console.log(results)
 // })
