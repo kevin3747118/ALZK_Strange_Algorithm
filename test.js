@@ -23,11 +23,14 @@
 // })
 
 
-function getRandomArbitrary(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (10 - 1)) + 1;
-  }
 
-a = getRandomArbitrary(1, 10)
-console.log(a)
+
+
+
+var a = [];
+for (var i = 0; i < 10; i++) {
+  a[i] = function () {
+    console.log(i);
+  };
+}
+console.log(i)

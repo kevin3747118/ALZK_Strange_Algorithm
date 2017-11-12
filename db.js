@@ -12,14 +12,28 @@ class DB {
         return conn
     }
 
-    static execSQL(sqlText, values) {
+    static execSQL(sqlText, values, type = 'SEL') {
         const conn = this.conn()
         return new Promise((resolve, reject) => {
-            conn.query(sqlText, [values], function(err, results) {
-                if (err) reject(err);
-                resolve(results)
-                conn.end()
-            }) 
+            if (type === 'SEL') {
+                conn.query(sqlText, [values], function (err, results) {
+                    if (err) reject(err);
+                    else {
+                        resolve(results)
+                    }
+                    conn.end()
+                })
+            } else {
+                conn.query(sqlText, [values], function (err) {
+                    if (err) {
+                        reject(err);
+                        console.log(err)
+                    } else {
+                        resolve()
+                    }
+                    conn.end()
+                })
+            }
         })
     }
 
