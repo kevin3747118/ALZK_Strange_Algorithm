@@ -27,10 +27,31 @@
 
 
 
-var a = [];
-for (var i = 0; i < 10; i++) {
-  a[i] = function () {
-    console.log(i);
-  };
-}
-console.log(i)
+// function asyncCall(cb) {
+//     process.nextTick(function () {
+//         // throw new Error('async exception');
+//         cb('ayncCall');
+//     });
+// }
+// try {
+//     asyncCall((text) => {
+//         console.log(text)
+//     });
+// } catch (error) {
+//     console.log('catch asycn exception');
+// }
+
+
+// var a;
+// var array = [1, 2, 3, 4, 5, 6, 7]
+// for(var index in array){
+//     a += array[index];
+// }
+// console.log(a);
+
+Promise.all([
+    // Resolves
+    Promise.resolve(1),
+    // Rejects after 2 seconds
+    new Promise((resolve, reject) => setTimeout(() => reject(1), 2000))
+].map(p => p.catch(() => undefined))).then(() => console.log('done!'));
