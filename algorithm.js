@@ -11,23 +11,29 @@ tTable = function () {
     // let arr2db = [{ t1: 1 }, { t1: 2 }, { t1: 3 }]
     // let arr2db = [{ t1: 1 }, { t1: 2 }, { t1: 1 }, { t1: 3 }]
     // let arr2db = [{ t1: 1 }, { t1: 1 }, { t1: 2 }]
-    let arr2db = [{ t1: 1 }, { t1: 1 }, { t1: 1 }] 
+    let arr2db = [{ t1: 1 }, { t1: 1 }, { t1: 1 }]
     return new Promise((resolve, reject) => {
-        arr2db.forEach(function (x) {
-            p.push(DB.execSQL('insert into alzk.T values(' + Object.values(x)[0].toString() + ')', values=null, type='INS'))
-        })
-    return Promise.all(p.map(p => p.then(() => {
-        insertStatus['success'] += 1
-    }).catch(() => {
-        insertStatus['fail'] += 1
-    }))).then(()=>{resolve(insertStatus)}).catch((err) => {
-        reject(err)
-    })
+        DB.execSQL('truncate table alzk.T')
+            .then(() => {
+                arr2db.forEach(function (x) {
+                    p.push(DB.execSQL('insert into alzk.T values(' + Object.values(x)[0].toString() + ')', values = null, type = 'INS'))
+                })
+                return Promise.all(p.map(p => p.then(() => {
+                    insertStatus['success'] += 1
+                }).catch(() => {
+                    insertStatus['fail'] += 1
+                }))).then(() => { resolve(insertStatus) }).catch((err) => {
+                    reject(err)
+                })
+            }).catch(() => { console.log(err) })
     })
 }
+
+
+
 tTable().then((results) => {
     console.log(results)
-}).catch((err)=>{
+}).catch((err) => {
     console.log(err)
 })
 
