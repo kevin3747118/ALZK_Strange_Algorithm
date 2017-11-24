@@ -1,17 +1,3 @@
-// import { setTimeout } from "timers";
-
-// import { setTimeout } from "timers";
-
-
-
-// var fs = require('fs')
-
-// fs.readFile('input.txt', function(err, results) {
-//     if (err) return console.log(err);
-//     console.log(results.toString())
-// })
-// console.log("program end")
-
 
 
 // function test(cb) {
@@ -85,14 +71,14 @@
 //     console.log("Yay! " + successMessage);
 //   });
 
-var start = new Date;
-setTimeout(
-    function () {
-        var end = new Date;
-        console.log('Time elapsed:', end - start, 'ms');
-    }, 1500);
+// var start = new Date;
+// setTimeout(
+//     function () {
+//         var end = new Date;
+//         console.log('Time elapsed:', end - start, 'ms');
+//     }, 1500);
 
-while (new Date - start < 1000) { };
+// while (new Date - start < 1000) { };
 
 // for (let i = 1; i <= 3; i++) {
 //     setTimeout(
@@ -101,3 +87,15 @@ while (new Date - start < 1000) { };
 //         }, 0);
 // };
 // console.log(i)
+
+
+function x() {
+    console.log('xxx@_@')
+}
+
+function y(cb) {
+    console.log('yyy')
+    cb()
+}
+
+y(x)

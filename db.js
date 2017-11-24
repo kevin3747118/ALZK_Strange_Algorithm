@@ -47,7 +47,9 @@ module.exports = DB
 // module.exports.DB = DB;
 
 
-// DB.execSQL(`select * from alzk.staffs`)
-// .then((results) => {
-//     console.log(results)
-// })
+DB.execSQL(`select * from alzk.specialkeys limit 1`)
+.then((results) => {
+    results.forEach((akey) => {
+        console.log(akey.createdate.slice(0, 10))
+    });
+})
