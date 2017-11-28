@@ -1,2 +1,2 @@
 # ALZK Strange Algorithm
-# ALZK GitHub Tutorial2
+# ALZK GitHub Tutorial
