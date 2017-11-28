@@ -89,13 +89,26 @@
 // console.log(i)
 
 
-function x() {
-    console.log('xxx@_@')
-}
+// function x() {
+//     console.log('xxx@_@')
+// }
 
-function y(cb) {
-    console.log('yyy')
-    cb()
-}
+// function y(cb) {
+//     console.log('yyy')
+//     cb()
+// }
 
-y(x)
+// y(x)
+
+a = [1, 2, '@', '幹']
+b = ['@', 3, 4, '幹']
+// b = []
+// a = a.filter((ele) => {
+//     return b.indexOf(ele) < 0
+// })
+
+c = a.filter(()=>{
+    return true
+})
+console.log(c)
+// console.log(b.indexOf('@'))
